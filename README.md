@@ -71,6 +71,10 @@ The script executes the following steps in an unattended manner, except for the 
 | **12.** | Final Verification | **Verifies all critical hardware and software requirements** (CPU, RAM, Disk, OS, Docker). If any critical check fails, the script stops here. |
 | **13.** | BBB Installation | If verification was successful, executes the unattended BigBlueButton installation command with the Let's Encrypt certificate. |
 
+## **📝 Logging**
+
+The script automatically logs all output (stdout and stderr) to `/var/log/bbb-sss.log`. This is useful for debugging installation issues.
+
 ## **📜 License**
 
 MIT License

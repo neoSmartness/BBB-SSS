@@ -12,6 +12,11 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+# --- LOGGING CONFIGURATION ---
+LOG_FILE="/var/log/bbb-sss.log"
+echo "Logging installation to $LOG_FILE"
+exec > >(tee -a "$LOG_FILE") 2>&1
+
 # --- DATA INPUT FUNCTION (Interactive) ---
 read_input() {
     echo "--- 1. DATA INPUT ---"
