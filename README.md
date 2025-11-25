@@ -1,4 +1,4 @@
-# **⚙️ BigBlueButton (BBB) Server Setup Script**
+# **⚙️ BigBlueButton (BBB) Server Setup Script (SSS)**
 
 This Bash script (`install.sh`) is designed to automate the initial configuration of an **Ubuntu 22.04 LTS (Jammy Jellyfish)** server and the installation of **BigBlueButton (BBB)**, ensuring all hardware and software requirements are met before proceeding with the main installation.
 
