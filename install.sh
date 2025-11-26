@@ -191,9 +191,9 @@ main() {
     # 4. Update Repositories and Install Initial Dependencies
     echo "--- 4. UPDATE AND INITIAL PACKAGES ---"
     # DEBIAN_FRONTEND=noninteractive should suppress kernel prompt here.
-    apt update -y
-    apt upgrade -y
-    apt install -y curl gnupg2 software-properties-common wget apt-transport-https htop net-tools ntpdate ca-certificates
+    apt-get update -y
+    apt-get upgrade -y
+    apt-get install -y curl gnupg2 software-properties-common wget apt-transport-https htop net-tools ntpdate ca-certificates
     echo "Update and initial packages completed."
     echo "--------------------------------------------------------"
     
@@ -255,10 +255,15 @@ main() {
     
     # 7.1 Remove old versions
     echo "Removing old Docker versions..."
-    for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt remove -y $pkg; done
-    apt autoremove -y
+    for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove -y $pkg; done
+    apt-get autoremove -y
     rm -rf /var/lib/docker
     rm -rf /var/lib/containerd
+    
+    # 7.1.1 Remove old docker-compose binaries (Critical for Greenlight)
+    echo "Removing old docker-compose binaries..."
+    rm -f /usr/local/bin/docker-compose
+    rm -f /usr/bin/docker-compose
 
     # 7.2 Add Docker official repository
     echo "Configuring Docker repository..."
@@ -272,8 +277,8 @@ main() {
 
     # 7.3 Install Docker Engine
     echo "Installing Docker Engine, CLI and Compose..."
-    apt update -y
-    apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    apt-get update -y
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     
     # 7.4 Post-installation steps (Group)
     if ! grep -q "^docker:" /etc/group; then
@@ -309,8 +314,8 @@ main() {
 
     # 10. Re-Update System (Post-Docker)
     echo "--- 10. FINAL RE-UPDATE ---"
-    apt update -y
-    apt upgrade -y
+    apt-get update -y
+    apt-get upgrade -y
     echo "Final update completed."
     echo "--------------------------------------------------------"
     
@@ -327,7 +332,7 @@ main() {
         echo "Installing language packages and configuring LANG to en_US.UTF-8..."
         
         # Install necessary language pack
-        apt install -y language-pack-en
+        apt-get install -y language-pack-en
         
         # Configure new locale
         update-locale LANG="$EXPECTED_LANG"
