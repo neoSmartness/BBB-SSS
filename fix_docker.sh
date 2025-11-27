@@ -10,8 +10,8 @@ echo "--- FIX DOCKER SCRIPT ---"
 echo "This script will aggressively remove old docker-compose binaries and retry Greenlight installation."
 
 # Input required variables
-read -p "Enter the full subdomain (e.g., bbb.example.com): " SUBDOMAIN
-read -p "Enter your email address (e.g., admin@example.com): " EMAIL
+read -p "Enter the full subdomain (e.g., bbb.example.com): " SUBDOMAIN < /dev/tty
+read -p "Enter your email address (e.g., admin@example.com): " EMAIL < /dev/tty
 
 if [ -z "$SUBDOMAIN" ] || [ -z "$EMAIL" ]; then
     echo "Error: Subdomain and Email are required."
